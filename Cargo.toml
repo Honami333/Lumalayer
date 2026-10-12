@@ -1,0 +1,8 @@
+[package]
+name = "lumalayer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+agnosticlayer = "0.1.2"
+wibr = "0.2.16"

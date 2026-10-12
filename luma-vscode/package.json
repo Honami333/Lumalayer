@@ -1,0 +1,55 @@
+{
+  "name": "luma-vscode",
+  "displayName": "Luma",
+  "description": "Syntax highlighting for the Luma language",
+  "version": "0.1.4",
+  "license": "MIT",
+  "publisher": "Honami",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "luma",
+        "aliases": [
+          "Luma",
+          "luma"
+        ],
+        "extensions": [
+          ".luma"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[luma]": {
+        "editor.bracketPairColorization.enabled": true,
+        "editor.guides.bracketPairs": true
+      }
+    },
+    "colors": [
+      {
+        "id": "editorBracketHighlight.unexpectedBracket.foreground",
+        "description": "Unpaired bracket in Luma",
+        "defaults": {
+          "dark": "#ff3333",
+          "light": "#ff3333",
+          "highContrast": "#ff3333"
+        }
+      }
+    ],
+    "grammars": [{
+      "language": "luma",
+      "scopeName": "source.luma",
+      "path": "./syntaxes/luma.tmLanguage.json",
+      "tokenTypes": {
+        "comment.line.double-slash.luma": "comment",
+        "string.quoted.double.luma": "string"
+      }
+    }]
+  }
+}

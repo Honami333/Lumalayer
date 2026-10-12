@@ -1,0 +1,176 @@
+use crate::{Hit, MyImage};
+
+
+// pub type Main = Layer<A, B, C, D, E>;
+Layer Main {
+    // pub enum MainId { Title, DynamicTitle, Box, Logo } + Derive 
+    // u8-u64, i8-64 ... подходят и проверяются через специальный список 
+    Node My {
+        size: (200.0, 100.0),
+        scale: (1.5, 1.5),
+        transform: (10.0, 20.0, 0.0),
+        parent: Box,
+    }
+
+    Label StripTitle {
+        text: "Strip",
+        
+    }
+
+    Label Title {
+        // size: Size { width: 200, height: 100 }
+        // size: 200x100
+        size: (200.0, 100.0),
+
+        // scale: Scale { x: 1.5, y: 1.5 }
+        // scale: 1.5x1.5
+        scale: (1.5, 1.5),
+
+        // pos: Transform { x: 10, y: 20, z: 0 }
+        transform: (10.0, 20.0, 0.0),
+
+        // parent: Some(MainId::Box)
+        parent: Box,
+
+        // rotate: Rotate { rotate: 45.0, anchor: Anchor::CenterCenter }
+        rotate: (45.0, CenterCenter),
+
+        // color: Color { r: 255, g: 128, b: 0, a: 255 }
+        // color: #ff8000ff
+        color: (255, 128, 0, 255),
+
+        visible: true,
+        opacity: 255,
+
+        // Или text: "Hello"
+        // enum MainText{ #[strum = "Hello"] TitleText }
+        TextStyle TitleText {
+            // text: &'static str = "Hello"
+            text: "Hello",
+
+            // font_size: FontSize::New(16)  (по умолчанию FontSize::Default)
+            font_size: 16,
+
+            // color: Color { r: 255, g: 255, b: 255, a: 255 }
+            // color: #ffffffff
+            color: (255, 255, 255, 255),
+
+            // line_height: LineHeight::New(1.2)  (по умолчанию LineHeight::Default)
+            line_height: 1.2,
+
+            // letter_spacing: LetterSpacing::New(0.5)  (по умолчанию LetterSpacing::Default)
+            letter_spacing: 0.5,
+
+            // align: Align::TopLeft
+            align: TopLeft,
+        }
+    }
+
+    DynamicLabel DynamicTitle {
+        // size: Size { width: 200, height: 100 }
+        // size: 200x100
+        size: (200.0, 100.0),
+
+        // scale: Scale { x: 1.5, y: 1.5 }
+        // scale: 1.5x1.5
+        scale: (1.5, 1.5),
+
+        // transform: Transform { x: 10, y: 20, z: 0 }
+        transform: (10.0, 20.0, 0.0),
+
+        // parent: Some(MainId::Box)
+        parent: Box,
+
+        // rotate: Rotate { rotate: 45.0, anchor: Anchor::CenterCenter }
+        rotate: (45.0, CenterCenter),
+
+        // color: Color { r: 255, g: 128, b: 0, a: 255 }
+        // color: #ff8000ff
+        color: (255, 128, 0, 255),
+
+        visible: true,
+        opacity: 253,
+    
+        // Или text: "Hello"
+        TextStyle DynamicTitleText {
+            // text: String = "Hello".to_string()
+            text: "Hello",
+
+            // font_size: FontSize::New(16)  (по умолчанию FontSize::Default)
+            font_size: 16,
+
+            // color: Color { r: 255, g: 255, b: 255, a: 255 }
+            // color: 
+            color: #f1f23f,
+
+            // line_height: LineHeight::New(1.2)  (по умолчанию LineHeight::Default)
+            line_height: 1.2,
+
+            // letter_spacing: LetterSpacing::New(0.5)  (по умолчанию LetterSpacing::Default)
+            letter_spacing: 0.5,
+
+            // align: Align::TopLeft
+            align: TopLeft,
+        }
+    }
+    
+    Container Box {
+        // size: Size { width: 300, height: 100 }
+        // size: 300x100
+        size: (300.0, 100.0),
+
+        // scale: Scale { x: 1.0, y: 1.0 }
+        // scale: 1.0x1.0
+        scale: (1.0, 1.0),
+
+        // transform: Transform { x: 0, y: 0, z: 0 }
+        transform: (0.0, 0.0, 0.0),
+
+        // parent: None
+
+        // rotate: Rotate { rotate: 0.0, anchor: Anchor::TopLeft }
+        rotate: (0.0, TopLeft),
+
+        // // container_style.padding: f32 = 8.0
+        padding: 8.0,
+
+        // // container_style.clip: bool = false
+        clip: false,
+
+        // color: Color { r: 255, g: 128, b: 0, a: 255 }
+        // color: #ff8000ff
+        color: (255, 128, 0, 255),
+
+        // visual_mode: VisualMode { visible: true, opacity: 255 }
+        visible: true,
+        opacity: 255,
+    }
+
+    Image Logo {
+        // size: Size { width: 64, height: 64 }
+        // size: 64x64
+        size: (64.0, 64.0),
+
+        // scale: Scale { x: 1.0, y: 1.0 }
+        // scale: 1.0x1.0
+        scale: (1.0, 1.0),
+
+        // transform: Transform { x: 0, y: 0, z: 0 }
+        transform: (0.0, 0.0, 0.0),
+
+        // parent: Some(MainId::Box)
+        parent: Box,
+
+        // image_handle: ImageHandle (импортируется из Rust, в .luma не создаётся)
+        image_handle: MyImage,
+    }
+
+    HitVec<Hit> {
+        Hit::new(0, 10) => Box,
+        Hit { x_min: 0, x_max: 10 } => Title,
+    }
+
+    HitMap<Hit> {
+        Hit::new(5, 20) => Logo,
+    }
+}
